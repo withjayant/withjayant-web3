@@ -1,90 +1,167 @@
-# WithJayant — Blockchain Social Media 🚀
+# 🚀 WithJayant — Blockchain Social Network
 
-A fully decentralized social media app built on Ethereum.
-Every post is minted as an NFT. Earn CGT tokens for posting, liking & following.
+A fully decentralized social media platform built on **Ethereum Sepolia Testnet** where users can post, like, and earn **CGT tokens** — all on-chain!
 
-## 📁 Project Structure
+![WithJayant](https://img.shields.io/badge/Network-Sepolia-blue) ![Solidity](https://img.shields.io/badge/Solidity-0.8.24-green) ![React](https://img.shields.io/badge/React-Frontend-61DAFB) ![Hardhat](https://img.shields.io/badge/Hardhat-Framework-yellow) ![Vercel](https://img.shields.io/badge/Deployed-Vercel-black)
+
+---
+
+## 🌐 Live Demo
+
+👉 **[https://withjayant-web3.vercel.app](https://withjayant-web3.vercel.app)**
+
+---
+
+## 📸 Features
+
+- 🔗 **Connect MetaMask** wallet to interact with the app
+- 📝 **Create Profile** — stored permanently on-chain
+- 📰 **Post Content** — every post is a blockchain transaction
+- ❤️ **Like Posts** — interactions recorded on-chain
+- 🪙 **Earn CGT Tokens** — rewarded for engagement
+- 📊 **Live Network Stats** — posts, users, transactions in real time
+- 🔍 **Explore Feed** — discover other users and posts
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Smart Contract | Solidity 0.8.24 |
+| Blockchain | Ethereum Sepolia Testnet |
+| Development Framework | Hardhat |
+| Frontend | React.js |
+| Wallet | MetaMask |
+| Hosting | Vercel |
+| Version Control | GitHub |
+
+---
+
+## 📦 Project Structure
 
 ```
-withjayant/
-├── contracts/              ← Solidity smart contracts
-│   └── WithJayant.sol      ← Main contract (ERC721 + Social)
-├── scripts/                ← Deployment scripts
-│   └── deploy.js           ← Deploy & save ABI to frontend
-├── test/                   ← Contract tests
-│   └── WithJayant.test.js
-├── frontend/               ← React frontend
+withjayant-web3/
+├── contracts/
+│   └── WithJayant.sol        # Main smart contract
+├── scripts/
+│   └── deploy.js             # Deployment script
+├── frontend/
 │   ├── public/
-│   │   └── index.html
-│   ├── src/
-│   │   ├── components/     ← Reusable UI components
-│   │   │   ├── Sidebar.js
-│   │   │   ├── PostCard.js
-│   │   │   ├── ComposeBox.js
-│   │   │   └── RightSidebar.js
-│   │   ├── pages/          ← Full page screens
-│   │   │   ├── LandingPage.js
-│   │   │   ├── RegisterPage.js
-│   │   │   ├── FeedPage.js
-│   │   │   ├── ExplorePage.js
-│   │   │   └── ProfilePage.js
-│   │   ├── context/
-│   │   │   └── Web3Context.js  ← Wallet + contract state
-│   │   ├── utils/
-│   │   │   ├── contract.json   ← Auto-generated after deploy
-│   │   │   └── helpers.js      ← Utility functions
-│   │   ├── styles/
-│   │   │   └── global.css
-│   │   ├── App.js
-│   │   └── index.js
-│   └── package.json
+│   └── src/
+│       ├── components/       # Reusable UI components
+│       ├── pages/            # App pages
+│       │   ├── LandingPage.js
+│       │   ├── FeedPage.js
+│       │   ├── ExplorePage.js
+│       │   ├── ProfilePage.js
+│       │   └── RegisterPage.js
+│       ├── context/          # React context
+│       ├── utils/
+│       │   ├── contract.json # ABI + deployed address
+│       │   └── helpers.js
+│       └── styles/
 ├── hardhat.config.js
-├── package.json
-└── .env.example
+├── .env.example
+└── README.md
 ```
 
-## 🚀 Quick Start
+---
 
-### 1. Install dependencies
+## 🚀 Getting Started
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) v16+
+- [MetaMask](https://metamask.io/) browser extension
+- Sepolia test ETH ([Get free ETH here](https://cloud.google.com/application/web3/faucet/ethereum/sepolia))
+
+---
+
+### 1️⃣ Clone the Repository
 ```bash
+git clone https://github.com/withjayant/withjayant-web3.git
+cd withjayant-web3
+```
+
+### 2️⃣ Install Dependencies
+```bash
+# Root dependencies (Hardhat)
 npm install
-```
 
-### 2. Start local blockchain (Terminal 1)
-```bash
-npm run chain
-# or: npx hardhat node
-```
-
-### 3. Deploy contracts (Terminal 2)
-```bash
-npm run deploy
-# or: npx hardhat run scripts/deploy.js --network localhost
-```
-
-### 4. Start frontend (Terminal 3)
-```bash
+# Frontend dependencies
 cd frontend
 npm install
+cd ..
+```
+
+### 3️⃣ Set Up Environment Variables
+```bash
+cp .env.example .env
+```
+Fill in your `.env` file:
+```
+SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/YOUR_KEY
+PRIVATE_KEY=your_wallet_private_key
+```
+> ⚠️ **Never share or commit your `.env` file!**
+
+### 4️⃣ Compile the Contract
+```bash
+npx hardhat compile
+```
+
+### 5️⃣ Deploy to Sepolia
+```bash
+npx hardhat run scripts/deploy.js --network sepolia
+```
+
+### 6️⃣ Start the Frontend
+```bash
+cd frontend
 npm start
 ```
 
-### 5. Open browser
-Go to: http://localhost:3000
+App runs at: `http://localhost:3000`
 
-## 🦊 MetaMask Setup
-1. Add network: RPC = http://127.0.0.1:8545, Chain ID = 31337
-2. Import Account #0 private key from hardhat node output
-3. You have 10,000 test ETH!
+---
 
-## 🌐 Deploy to Sepolia Testnet
-1. Copy `.env.example` to `.env`
-2. Fill in your keys
-3. Run: `npx hardhat run scripts/deploy.js --network sepolia`
+## 🔗 Smart Contract
 
-## 🏗️ Smart Contract Features
-- ✅ Register profile (stored on-chain)
-- ✅ Create posts (minted as ERC-721 NFTs)
-- ✅ Like / Unlike posts
-- ✅ Follow / Unfollow users
-- ✅ CGT token rewards for all actions
+- **Network:** Ethereum Sepolia Testnet
+- **Contract Address:** `0xc92A9098e8E27bfa2E537F4Db6e875f49C2EeF57`
+- **View on Etherscan:** [Sepolia Etherscan](https://sepolia.etherscan.io/address/0xc92A9098e8E27bfa2E537F4Db6e875f49C2EeF57)
+
+---
+
+## 💡 How to Use
+
+1. Install **MetaMask** and switch to **Sepolia Testnet**
+2. Get free Sepolia ETH from the [faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia)
+3. Visit the [live app](https://withjayant-web3.vercel.app)
+4. Click **"Connect Wallet"**
+5. Create your profile
+6. Start posting and earning CGT tokens!
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first.
+
+---
+
+## 👨‍💻 Developer
+
+**Jayant Kumar**
+- GitHub: [@withjayant](https://github.com/withjayant)
+- Project: [WithJayant Blockchain Social](https://withjayant-web3.vercel.app)
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+⭐ **Star this repo if you found it helpful!**
